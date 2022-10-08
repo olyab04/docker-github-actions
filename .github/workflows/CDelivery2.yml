@@ -31,4 +31,16 @@ jobs:
       - name: Clone a repo
         run: |
           git clone ${{ env.repo }}
-          ls -l
+          ls -la
+
+
+      # Runs 
+      - name: Switch Branch
+        working-directory: artemis
+        run: |
+          git checkout 2.0.0
+          ls -la
+
+
+
+
