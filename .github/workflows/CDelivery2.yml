@@ -31,7 +31,7 @@ jobs:
       - name: Clone a repo
         run: |
           git clone ${{ env.repo }}
-          ls -la
+
 
 
       # Runs 
@@ -39,7 +39,19 @@ jobs:
         working-directory: artemis
         run: |
           git checkout 2.0.0
-          ls -la
+
+
+
+      # Runs 
+      - name: Remove Old Images
+        working-directory: artemis
+        run: |
+          docker image prune -af
+
+
+
+
+
 
 
 
