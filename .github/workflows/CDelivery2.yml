@@ -55,7 +55,18 @@ jobs:
         working-directory: artemis
         run: |
           docker image build -t artemis:2.0.0   .
+          
+
+
+      # Runs set of commands using the runners shell
+      - name: Tag Image
+        working-directory: artemis
+        run: |
+          docker image tag artemis:2.0.0 olgabotnari/artemis:2.0.0
           docker images 
+
+
+
 
 
 
