@@ -48,4 +48,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.app_name }}:"1.0.0"   #   ${{ env.app_version }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.app_name }}:1.0.0   #   ${{ env.app_version }}
