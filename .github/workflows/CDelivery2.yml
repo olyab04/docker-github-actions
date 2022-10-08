@@ -1,5 +1,6 @@
 env:
   repo: "https://github.com/farrukh90/artemis"
+  app_version: "2.0.0"
 
 name: ContinuousDelivery
 # Controls when the workflow will run
@@ -38,7 +39,7 @@ jobs:
       - name: Switch Branch
         working-directory: artemis
         run: |
-          git checkout 2.0.0
+          git checkout ${{ env.app_version }}
 
 
 
@@ -54,7 +55,7 @@ jobs:
       - name: Docker Build
         working-directory: artemis
         run: |
-          docker image build -t artemis:2.0.0   .
+          docker image build -t artemis:${{ env.app_version }}   .
           
 
 
@@ -62,7 +63,7 @@ jobs:
       - name: Tag Image
         working-directory: artemis
         run: |
-          docker image tag artemis:2.0.0 olgabotnari/artemis:2.0.0
+          docker image tag artemis:${{ env.app_version }} olgabotnari/artemis:${{ env.app_version }}
           docker images 
 
 
@@ -76,10 +77,10 @@ jobs:
       # Runs set of commands using the runners shell
       - name: Push Image
         run: |
-          docker push olgabotnari/artemis:2.0.0 
+          docker push olgabotnari/artemis:${{ env.app_version }} 
 
 
-          
+
 
 
 
