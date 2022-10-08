@@ -34,7 +34,7 @@ jobs:
 
 
 
-      # Runs 
+      # Runs set of commands using the runners shell
       - name: Switch Branch
         working-directory: artemis
         run: |
@@ -42,11 +42,22 @@ jobs:
 
 
 
-      # Runs 
-      - name: Remove Old Images
+      # # Runs set of commands using the runners shell
+      # - name: Remove Old Images
+      #   working-directory: artemis
+      #   run: |
+      #     docker image prune -af
+
+
+
+      # Runs set of commands using the runners shell
+      - name: Docker Build
         working-directory: artemis
         run: |
-          docker image prune -af
+          docker image build -t artemis:2.0.0   .
+          docker images 
+
+
 
 
 
