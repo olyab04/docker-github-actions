@@ -27,7 +27,7 @@ jobs:
       - name: Debug
         run: |
           echo ${{ env.app_name }}
-          echo ${{ env.version }}
+          echo ${{ env.app_version }}
 
     #   -
     #     name: Checkout 
