@@ -1,5 +1,6 @@
 env:
   app_name: "wordpress"
+  app_version: "${GITHUB_SHA}"
 
    
 name: Continuous Delivery
@@ -26,6 +27,7 @@ jobs:
       - name: Debug
         run: |
           echo ${{ env.app_name }}
+          echo ${{ env.version }}
 
     #   -
     #     name: Checkout 
