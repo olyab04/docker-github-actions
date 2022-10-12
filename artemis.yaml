@@ -1,0 +1,14 @@
+version: "3.3"
+services: 
+  artemis:
+    image: olgabotnari/artemis:2.0.0
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+          cpus: '0.5'
+      placement:
+        constraints: 
+          - node.role == worker
+    ports:
+      - "5000:5000"
