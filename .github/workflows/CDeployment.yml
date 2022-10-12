@@ -1,4 +1,8 @@
-# This is a basic workflow to help you get started with Actions
+env:
+  dev:   "134.209.122.57"
+  qa:    "134.209.122.57"
+  stage: "134.209.122.57"
+  prod:  "134.209.122.57"
 
 name: Continuous Deployment for Artemis
 
@@ -20,7 +24,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
- 
+ # This workflow contains a single job called "build" 
   deploy-to-dev:
   if: github.event.inputs.deploy_env == '' || github.event.inputs.deploy_env == 'dev'
     # The type of runner that the job will run on
@@ -34,7 +38,7 @@ jobs:
       - name: Deploy to Docker swarm
         uses: wshihadeh/docker-deployment-action@v1
         with:
-          remote_docker_host: root@134.209.122.57
+          remote_docker_host: root@${{ env.dev }}
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
           deployment_mode: docker-swarm
@@ -58,7 +62,7 @@ jobs:
       - name: Deploy to Docker swarm
         uses: wshihadeh/docker-deployment-action@v1
         with:
-          remote_docker_host: root@134.209.122.57   #QA
+          remote_docker_host: root@${{ env.qa }}   #QA
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
           deployment_mode: docker-swarm
@@ -83,7 +87,7 @@ jobs:
       - name: Deploy to Docker swarm
         uses: wshihadeh/docker-deployment-action@v1
         with:
-          remote_docker_host: root@134.209.122.57
+          remote_docker_host: root@${{ env.stage }}
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
           deployment_mode: docker-swarm
@@ -106,7 +110,7 @@ jobs:
       - name: Deploy to Docker swarm
         uses: wshihadeh/docker-deployment-action@v1
         with:
-          remote_docker_host: root@134.209.122.57
+          remote_docker_host: root@${{ env.prod }}
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
           deployment_mode: docker-swarm
