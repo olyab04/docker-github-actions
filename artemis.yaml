@@ -1,7 +1,7 @@
 version: "3.3"
 services: 
   artemis:
-    image: olgabotnari/artemis:2.0.0
+    image: olgabotnari/artemis:latest
     deploy:
       replicas: 1
       resources:
